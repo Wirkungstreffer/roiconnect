@@ -1,0 +1,20 @@
+function [EEG_syn, com] = EEG_syn_generator(signal_sensor, fs, varargin)
+%% Signal generation
+    g = finputcheck(varargin, { 
+        %'alpha'         'float'          { }              0.05;...
+        %'sim_case'      'integer'        { }              2;
+        %'n_univ'        'integer'        { }              0; ...
+        %'n_biv'         'integer'        { }              1;
+        %'isnr'          'float'          { }              0.5 ;
+        %'iroi_pac'      'integer'        { }              [27 59]; % [lingual L superiorparietal L]
+        'dataformat'        'char'             { }              'array';
+        'nbchan'            'integer'          { }              0;
+        'data'             'integer'        { }              0;
+        'fs'            'integer'        { }              100;
+        'epleng'        'float'          { }              2;
+        'N'             'integer'        { }              12000;
+        'low'           'float'          { }              [5 7];
+        'high'          'float'          { }              [30 34];
+    }, 'sim_wholebrain_pac'); 
+
+    EEG_syn = pop_importdata('dataformat','array','nbchan',0,'data',signal_sensor,'setname','PAC_Simulation','srate',fs,'pnts',0,'xmin',0);
